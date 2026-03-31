@@ -222,7 +222,7 @@ function buildPagination() {
   container.appendChild(next)
 }
 
-function goToPage(page) {
+function goToPage(page, scroll = true) {
   currentPage = page
   const start = (page - 1) * ITEMS_PER_PAGE
   const end = start + ITEMS_PER_PAGE
@@ -232,11 +232,13 @@ function goToPage(page) {
   })
 
   buildPagination()
-  document.getElementById('galerie').scrollIntoView({ behavior: 'smooth' })
+  if (scroll) {
+    document.getElementById('galerie').scrollIntoView({ behavior: 'smooth' })
+  }
 }
 
 // Initialiser page 1
-goToPage(1)
+goToPage(1, false)
 
 // Lightbox
 function openLightbox(index) {
